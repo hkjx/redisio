@@ -50,7 +50,7 @@ default['redisio']['init.d']['required_start'] = []
 default['redisio']['init.d']['required_stop'] = []
 
 # Default settings for all redis instances, these can be overridden on a per server basis in the 'servers' hash
-default['redisio']['default_settings'] = {
+basic_hash = {
   'user'                   => 'redis',
   'group'                  => 'redis',
   'homedir'                => homedir,
@@ -93,6 +93,14 @@ default['redisio']['default_settings'] = {
   'includes'               => nil
 }
 
+default['redisio']['servers'] = [
+  basic_hash.merge(name: 'server1', port: '6379'),
+  basic_hash.merge(name: 'server2', port: '6380'),
+  basic_hash.merge(name: 'server3', port: '6381'),
+  basic_hash.merge(name: 'server4', port: '6382'),
+  basic_hash.merge(name: 'server5', port: '6383')
+]
+
 # The default for this is set inside of the "install" recipe. This is due to the way deep merge handles arrays
-default['redisio']['servers'] = nil
+# default['redisio']['servers'] = nil
 
